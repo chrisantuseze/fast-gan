@@ -120,36 +120,6 @@ def train(args):
         avg_param_G = ckpt['g_ema']
         optimizerG.load_state_dict(ckpt['opt_g'])
         optimizerD.load_state_dict(ckpt['opt_d'])
-        # current_iteration = int(checkpoint.split('_')[-1].split('.')[0])
-
-
-        # freeze some layers
-        for name, param in netD.named_parameters():
-            name_ = name.split(".")
-            if ('decoder_big' in name_ and 'bias' in name_) or ('decoder_big' in name_ and 'weight' in name_):
-                continue
-
-            if ('decoder_part' in name_ and 'bias' in name_) or ('decoder_part' in name_ and 'weight' in name_):
-                continue
-
-            if ('decoder_small' in name_ and 'bias' in name_) or ('decoder_small' in name_ and 'weight' in name_):
-                continue
-
-            param.requires_grad = False
-
-        for name, param in netG.named_parameters():
-            name_ = name.split(".")
-            if ('feat_1024' in name_ and 'bias' in name_) or ('feat_1024' in name_ and 'weight' in name_):
-                continue
-
-            if ('feat_512' in name_ and 'bias' in name_) or ('feat_512' in name_ and 'weight' in name_):
-                continue
-
-            if ('feat_256' in name_ and 'bias' in name_) or ('feat_256' in name_ and 'weight' in name_):
-                continue        
-
-            param.requires_grad = False
-
         del ckpt
         
     if multi_gpu:
@@ -234,7 +204,7 @@ def generate_images(args, images_path):
     print("Generating images...")
 
     for i, val in enumerate(netG(fixed_noise)[0].add(1).mul(0.5)):
-            torchvision.utils.save_image(val, f'{images_path}/image_{iter}_{i}.jpg')
+        torchvision.utils.save_image(val, f'{images_path}/image_{iter}_{i}.jpg')
 
 def do_gen_ai(args):
     parser = argparse.ArgumentParser(description='region gan')

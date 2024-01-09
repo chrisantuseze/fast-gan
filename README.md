@@ -1,5 +1,4 @@
-# A Fast and Stable GAN for Small and High Resolution Imagesets - pytorch
-The official pytorch implementation of the paper "Towards Faster and Stabilized GAN Training for High-fidelity Few-shot Image Synthesis", the paper can be found [here](https://arxiv.org/abs/2101.04775).
+An extension of the the official pytorch implementation of the paper "Towards Faster and Stabilized GAN Training for High-fidelity Few-shot Image Synthesis", the paper can be found [here](https://arxiv.org/abs/2101.04775).
 
 ## 0. Data
 The datasets used in the paper can be found at [link](https://drive.google.com/file/d/1aAJCZbXNHyraJ6Mi13dSbe7pTyfPXha0/view?usp=sharing). 
